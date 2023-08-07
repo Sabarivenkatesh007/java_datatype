@@ -1,0 +1,120 @@
+Java has 8 primitive data types; char, boolean, byte, short, int, long, float, and double. 
+For this exercise, we'll work with the primitives used to hold integer values (byte, short, int, and long):
+
+A byte is an 8-bit signed integer.
+A short is a 16-bit signed integer.
+An int is a 32-bit signed integer.
+A long is a 64-bit signed integer.
+
+
+Given an input integer, you must determine which primitive 
+data types are capable of properly storing that input.
+Reference: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
+
+Input Format
+
+The first line contains an integer,T, denoting the number of test cases.
+Each test case,T, is comprised of a single line with an integer,n, which can be arbitrarily large or small.
+
+Output Format
+
+For each input variable n and appropriate primitive dataType, you must determine if the given primitives are capable of storing it. If yes, then print:
+
+n can be fitted in:
+* dataType
+If there is more than one appropriate data type, print each one on its own line and order them by size (i.e.: ).
+
+If the number cannot be stored in one of the four aforementioned primitives, print the line:
+
+n can't be fitted anywhere.
+
+Sample Input
+
+5
+-150
+150000
+1500000000
+213333333333333333333333333333333333
+-100000000000000
+
+
+Sample Output
+
+-150 can be fitted in:
+* short
+* int
+* long
+150000 can be fitted in:
+* int
+* long
+1500000000 can be fitted in:
+* int
+* long
+213333333333333333333333333333333333 can't be fitted anywhere.
+-100000000000000 can be fitted in:
+* long
+
+
+PROGRAM:
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        for(int i=0;i<t;i++)
+        {
+            String s=sc.next();
+            String s1="";
+            if(s.equals("0")||s.equals("1"))
+            s1=s1+"boolean#";    
+            try{
+                byte b=Byte.parseByte(s);
+                s1=s1+"byte#";
+            }
+            catch(Exception e)
+            {
+                
+            }
+            try{
+                short b1=Short.parseShort(s);
+                s1=s1+"short#";
+            }
+            catch(Exception e)
+            {
+                
+            }
+            try{
+                int j=Integer.parseInt(s);
+                s1=s1+"int#";
+            }
+            catch(Exception e)
+            {
+                
+            }
+            try{
+                long l=Long.parseLong(s);
+                s1=s1+"long#";
+            }
+            catch(Exception e)
+            {
+                
+            }
+            if(!s1.equals(""))
+            {
+                System.out.println(s+" can be fitted in:");
+                String s2[]=s1.split("#");
+                for(int j=0;j<s2.length;j++)
+                {
+                    if(!s2[j].equals(""))
+                    System.out.println("* "+s2[j]); 
+                }
+            }
+            else
+            System.out.println(s+" can't be fitted anywhere.");         
+        }
+    }
+}
